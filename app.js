@@ -1,8 +1,8 @@
 var express = require('express');
 var app = express();
-var router_1 = require('./router/router_1');
+var router_mainPage = require('./router/main_page');
 
-app.use('/',router_1);
+app.use('/',router_mainPage);
 
 app.listen(3000, () => {
   console.log('listen t0 3000')

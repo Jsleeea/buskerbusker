@@ -6,11 +6,15 @@ router.use(function(req, res, next) {
 });
 
 router.get('/', function(req, res) {
-  res.send('hi1');
-});
+  var title = 'Welcome';
+  var description = 'Hello, Node.js';
+  var html = 
+    `
+    <h2>${title}</h2>
+    ${description}
 
-router.get('/about', function(req, res) {
-  res.send('hi2');
+    `
+  res.send(html);
 });
 
 module.exports = router;
