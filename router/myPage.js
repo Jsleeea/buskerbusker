@@ -1,14 +1,13 @@
-var express = require('express');
+var express = require("express");
 var router = express.Router();
 // var template = require('./lib.template.js');
 
-router.use(function(req, res, next) {
+router.use(function (req, res, next) {
   next();
 });
 
-router.get('/', function(req, res) {
-  var html = 
-    `
+router.get("/", function (req, res) {
+  var html = `
     <!doctype html>
     <html>
       <head>
@@ -28,7 +27,7 @@ router.get('/', function(req, res) {
       </p>
     </body>
     </html>
-    `
+    `;
   res.send(html);
 });
 

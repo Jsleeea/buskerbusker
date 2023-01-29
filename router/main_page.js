@@ -1,5 +1,6 @@
-var express = require('express');
-
+var express = require("express");
+var fs = require("fs");
+var template = require("../lib/template.js");
 var router = express.Router();
 // var template = require('./lib.template.js');
 
@@ -7,31 +8,21 @@ router.use(function (req, res, next) {
   next();
 });
 
-router.get('/', function(req, res) {
-  var html = 
-    `
-    <!doctype html>
-    <html>
-      <head>
-        <title>BUSKERBUSKER - Welcome</title>
-        <meta charset="utf-8">
-      </head>
-    <body>
-      <h1><a href="/">BUSKER_BUSKER</a></h1>
-      <ol>
-        <li><a href="/notice">NOTICE</a></li>
-        <li><a href="/myPage">MyPage</a></li>
-        <li><a href="3.html">JavaScript</a></li>
-      </ol>
-      <a href ="/create">질문 등록하기</a>
-      <h2>WEB</h2>
-      <p>
-      This is Main Page
-      </p>
-    </body>
-    </html>
-    `;
-  res.send(html);
+//
+router.get("/", function (request, response) {
+  fs.readdir("./data", function (error, filelist) {
+    //filelist == mypage, notice;
+    var title = "Web";
+    var description = "this is the main page";
+    var list = template.list(filelist);
+    var html = template.HTML(
+      title,
+      list,
+      `<h2>${title}</h2>${description}`,
+      `<a href="/create">질문 등록하기</a>`
+    );
+    response.send(html);
+  });
 });
-
+//
 module.exports = router;
