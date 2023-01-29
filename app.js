@@ -1,6 +1,7 @@
 var express = require("express");
 var fs = require("fs");
 var qs = require("querystring");
+
 var app = express();
 var router_mainPage = require("./router/main_page");
 var router_displayPage = require("./router/noticeDisplay");
@@ -16,14 +17,16 @@ app.listen(3000, () => {
 app.use("/", router_mainPage);
 app.use("/myPage", router_myPage);
 app.use("/create", router_createPage);
-/*
-fs.readdir("./data", function (error, filelist) {
-  app.use("/page/:pageId", router_displayPage);
-});
-*/
+
 app.use("/page/:pageId", router_displayPage);
+
 /*
 app.use((req, res, next) => {
   res.status(/n404).send("Not Found");
+});
+*/
+/*
+fs.readdir("./data", function (error, filelist) {
+  app.use("/page/:pageId", router_displayPage);
 });
 */
