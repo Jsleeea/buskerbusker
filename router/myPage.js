@@ -16,7 +16,7 @@ router.get('/', function(req, res) {
         <meta charset="utf-8">
       </head>
     <body>
-      <h1><a href="/">BUSKER_BUSKER</a></h1>
+      <h1><a href="/">MY_PAGE</a></h1>
       <ol>
         <li><a href="/notice">NOTICE</a></li>
         <li><a href="/myPage">MyPage</a></li>
