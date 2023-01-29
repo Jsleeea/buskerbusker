@@ -3,7 +3,7 @@ var express = require('express');
 var router = express.Router();
 // var template = require('./lib.template.js');
 
-router.use(function(req, res, next) {
+router.use(function (req, res, next) {
   next();
 });
 
@@ -23,13 +23,14 @@ router.get('/', function(req, res) {
         <li><a href="/myPage">MyPage</a></li>
         <li><a href="3.html">JavaScript</a></li>
       </ol>
+      <a href ="/create">질문 등록하기</a>
       <h2>WEB</h2>
       <p>
       This is Main Page
       </p>
     </body>
     </html>
-    `
+    `;
   res.send(html);
 });
 
