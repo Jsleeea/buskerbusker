@@ -16,42 +16,17 @@ router.get('/:pageID',function(request, response){
     var filteredId = path.parse(request.params.pageID).base;
     
     fs.readFile(`./data/noticeData/${filteredId}`, 'utf-8', function(err, description){
-      console.log(request.params.pageID);
-
+      var title = request.params.pageID;
+      var list = template.list(filelist);
+      var html = template.HTML(
+        title,
+        list,
+        ``,
+        `<h2>${title}</h2>${description}`,
+      );
+      response.send(html);
     });
   });
-
-  response.send(request.params.pageID);
 });
-
-
-// // if pageId = 질문1
-// router.get("/", function (request, response) {
-//   //filelist = [ 'mypage', 'notice' ]
-//   fs.readdir("../data/noticeData", function (error, filelist) {
-//     var filteredId = path.parse(request.params.pageId).base;
-//     console.log(filteredId);
-//     fs.readFile(`../data/noticeData/${filteredId}`, "utf8", function (err, description) {
-//       var title = request.params.pageId;
-//       var sanitizedTitle = sanitizeHtml(title);
-//       var sanitizedDescription = sanitizeHtml(description, {
-//         allowedTags: ["h1"],
-//       });
-//       var list = template.list(filelist);
-//       var html = template.HTML(
-//         sanitizedTitle,
-//         list,
-//         `<h2>${sanitizedTitle}</h2>${sanitizedDescription}`,
-//         ` <a href="/create">create</a>
-//           <a href="/update/${sanitizedTitle}">update</a>
-//           <form action="delete_process" method="post">
-//             <input type="hidden" name="id" value="${sanitizedTitle}">
-//             <input type="submit" value="delete">
-//           </form>`
-//       );
-//       response.send(html);
-//     });
-//   });
-// });
 
 module.exports = router;
