@@ -7,6 +7,7 @@ var router_mainPage = require("./router/main_page");
 var router_displayPage = require("./router/noticeDisplay");
 var router_myPage = require("./router/myPage");
 var router_createPage = require("./router/create_page");
+var router_loginPage = require('./router/login');
 //var router = express.Router({ mergeParams: true });
 // var template = require('./lib/template.js');
 
@@ -17,8 +18,9 @@ app.listen(3000, () => {
 app.use("/", router_mainPage);
 app.use("/myPage", router_myPage);
 app.use("/create", router_createPage);
-
-app.use("/page/:pageId", router_displayPage);
+// app.use("/page/:pageId", router_displayPage);
+app.use("/page", router_displayPage);
+app.use('/login', router_loginPage);
 
 /*
 app.use((req, res, next) => {
