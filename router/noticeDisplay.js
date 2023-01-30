@@ -4,17 +4,24 @@ var express = require("express");
 var router = express.Router({ mergeParams: true });
 var template = require('../lib/template.js');
 var fs = require('fs');
+var path = require('path');
 
 
 router.use(function (req, res, next) {
   next();
 });
 
-router.get('/',function(request, response){
+router.get('/:pageID',function(request, response){
   fs.readdir('./data/noticeData', function(err, filelist){
-    // console.log(filelist); [ 'Q1', 'Q2' ]
+    var filteredId = path.parse(request.params.pageID).base;
     
+    fs.readFile(`./data/noticeData/${filteredId}`, 'utf-8', function(err, description){
+      console.log(request.params.pageID);
+
+    });
   });
+
+  response.send(request.params.pageID);
 });
 
 

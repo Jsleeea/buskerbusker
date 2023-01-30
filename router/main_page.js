@@ -3,7 +3,6 @@ var fs = require("fs");
 var template = require("../lib/template.js");
 var router = express.Router();
 var bodyParser = require('body-parser');
-// var template = require('./lib.template.js');
 
 router.use(function (req, res, next) {
   next();
