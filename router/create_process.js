@@ -14,7 +14,7 @@ router.post("/", function (request, response) {
   var title = post.title;
   var description = post.description;
   fs.writeFile(
-    `./DATA/noticeData/${title}`,
+    `./data/noticeData/${title}`,
     description,
     "utf8",
     function (err) {
