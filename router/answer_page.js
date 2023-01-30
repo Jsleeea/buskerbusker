@@ -23,7 +23,16 @@ router.get("/:pageID", function (request, response) {
         var html = template.HTML(
           title,
           list,
-          `<a href='/answer/${filteredId}'>답변하기</a>`,
+          `
+          <form action="" method="post">
+      <p>
+        <textarea name="description" placeholder="답변 작성시 서비스 운영정책을 지켜주세요."></textarea>
+      </p>
+      <p>
+        <input type="submit">
+      </p>
+    </form><br>
+        `,
           `<h2>${title}</h2>${description}<br>`
         );
         response.send(html);

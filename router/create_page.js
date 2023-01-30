@@ -35,18 +35,6 @@ router.get("/", function (req, res) {
   res.send(html);
 });
 
-/*
-router.post("/create_process", function (request, response) {
-  var post = request.body;
-  var title = post.title;
-  var description = post.description;
-  fs.writeFile(`./data/${title}`, description, "utf8", function (err) {
-    response.writeHead(302, { Location: `/?id=${title}` });
-    response.end();
-  });
-});
-*/
-
 module.exports = router;
 /*
 router.get("/create", function (req, res) {
