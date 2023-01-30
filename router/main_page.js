@@ -2,7 +2,7 @@ var express = require("express");
 var fs = require("fs");
 var template = require("../lib/template.js");
 var router = express.Router();
-var bodyParser = require('body-parser');
+var bodyParser = require("body-parser");
 
 router.use(function (req, res, next) {
   next();
@@ -11,8 +11,9 @@ router.use(function (req, res, next) {
 router.use(bodyParser.urlencoded({ extended: false }));
 
 //
+
 router.get("/", function (request, response) {
-  fs.readdir("./DATA/noticeData", function (error, filelist) {
+  fs.readdir("./data/noticeData", function (error, filelist) {
     //filelist == mypage, notice;
     var title = "Web";
     var description = "this is the main page";
@@ -27,7 +28,7 @@ router.get("/", function (request, response) {
   });
 });
 
-// router.get('/:pageID', function(request, response) { 
+// router.get('/:pageID', function(request, response) {
 //   //fs.readdir('./data', function(error, filelist){
 //      var filteredId = path.parse(request.params.pageID).base;
 //      fs.readFile(`data/${filteredId}`, 'utf8', function(err, description){
