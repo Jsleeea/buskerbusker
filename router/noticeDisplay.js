@@ -13,9 +13,7 @@ router.use(function (req, res, next) {
 router.get("/:pageID", function (request, response) {
   fs.readdir("./data/noticeData", function (err, filelist) {
     var filteredId = path.parse(request.params.pageID).base;
-    fs.readdir(
-      `./data/${filteredId}/answerData`,
-      function (err, answer_filelist) {
+    fs.readdir( `./data/${filteredId}/answerData`,function (err, answer_filelist) { //여기서 오류
         fs.readFile(
           `./data/noticeData/${filteredId}`,
           "utf-8",
