@@ -25,7 +25,8 @@ router.get('/', function (req, res) {
 
 router.post('/',function (req, res) {
    var body = req.body;
-   console.log(body);
+   var id = body.id;
+   var pwd = body.pwd;
 
    res.send("ID : " + body.id + " / PWD : " + body.pwd);
 });

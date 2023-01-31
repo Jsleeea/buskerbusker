@@ -20,7 +20,8 @@ connection.query('SELECT * FROM userData', function (error, results, fields) {
     if (error) {
         console.log(error);
     }
-    console.log(results);
+    console.log(results[0].id);
+    // console.log(fields);
 });
   
 connection.end();
