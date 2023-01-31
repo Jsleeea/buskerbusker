@@ -8,7 +8,7 @@ USE buskerbuskerData;
 CREATE TABLE `userData` (
   `num` int(11) NOT NULL AUTO_INCREMENT,
   `id` varchar(20) NOT NULL,
-  `passward` varchar(200) DEFAULT NULL,
+  `password` varchar(200) DEFAULT NULL,
   PRIMARY KEY (`num`)
 );
 
