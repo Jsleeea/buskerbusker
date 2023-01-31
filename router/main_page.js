@@ -22,7 +22,8 @@ router.get("/", function (request, response) {
       title,
       list,
       `<h2>${title}</h2>${description}`,
-      `<a href="/create">질문 등록하기</a>`
+      `<a href="/create">질문 등록하기</a>
+       <a href="/login">로그인</a>`
     );
     response.send(html);
   });

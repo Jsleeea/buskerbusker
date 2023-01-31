@@ -23,7 +23,7 @@ router.get('/', function (req, res) {
     res.end();
 });
 
-router.post('/login',function (req, res) {
+router.post('/',function (req, res) {
    var body = req.body;
    console.log(body);
 
