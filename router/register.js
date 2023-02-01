@@ -49,6 +49,9 @@ router.post('/',function (req, res) {
     if (error) {
         console.log(error);
     }
+    else{
+        console.log('회원가입 성공');
+    }
    });
 
    res.redirect('/');
