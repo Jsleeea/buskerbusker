@@ -41,7 +41,7 @@ router.post('/',function (req, res) {
    var id = body.id;
    var pwd = body.pwd;
 
-   var query = `select passward from userdata where id= "${id}";`
+   var query = `select password from userdata where id= "${id}";`
 
    connection.query(query, function (error, results, fields) {
     if (error) {
@@ -55,7 +55,7 @@ router.post('/',function (req, res) {
         }
 
         else{
-            if(pwd == results[0].passward){ // password
+            if(pwd == results[0].password){ // password
                 console.log("로그인 성공");
                 res.cookie("User",id,{
                     expire: new Date(Date.now() + 900000),
@@ -67,7 +67,6 @@ router.post('/',function (req, res) {
                 console.log("비밀번호 틀림");
                 res.redirect('/login');
             }
-
         }
     }
    });
