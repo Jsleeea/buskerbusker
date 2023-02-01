@@ -11,7 +11,7 @@ var connection = mysql.createConnection({
     insecureAuth: true
 });
 
-router.use(cookieParser);
+// router.use(cookieParser);
 
 router.use(function (req, res, next) {
   next();
