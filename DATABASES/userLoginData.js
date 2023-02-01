@@ -9,7 +9,7 @@ ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'hong6376
 var connection = mysql.createConnection({
   host     : 'localhost',
   user     : 'root',
-  password : 'hong6376',
+  password : 'hong6376', // 본인 mySql Password 사용
   database : 'buskerbuskerData',
   insecureAuth: true
 });
@@ -20,8 +20,6 @@ connection.query('SELECT * FROM userData', function (error, results, fields) {
     if (error) {
         console.log(error);
     }
-    console.log(results[0].id);
-    // console.log(fields);
 });
   
 connection.end();
