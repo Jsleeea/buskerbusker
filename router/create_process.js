@@ -1,55 +1,40 @@
-/* <--- 이것만 지우면 됨.
 var express = require("express");
-var fs = require("fs");
-var qs = require("querystring");
 var app = express();
 var router = express.Router();
-// var template = require('./lib.template.js');
+var mysql = require('mysql');
 
 router.use(function (req, res, next) {
   next();
 });
 
-router.post("/", function (request, response) {
+var connection = mysql.createConnection({
+  host     : 'localhost',
+  user     : 'root',
+  password : 'hong6376', // 본인 mySql Password 사용
+  database : 'buskerbuskerData',
+  insecureAuth: true
+});
+
+connection.connect();
+
+router.post('/', function (request, response) {
   var post = request.body;
   var title = post.title; // Q1
   var description = post.description; //Question 1
-
-  fs.mkdirSync(`./data/${title}`);
-  //fs.mkdirSync(`./data/${title}/${title}`);
-  fs.mkdirSync(`./data/${title}/answerData`);
-
-  fs.writeFile(
-    `./data/noticeData/${title}`,
-    description,
-    "utf8",
-    function (err) {
-      //response.writeHead(302, { Location: `/?id=${title}` });
-      response.writeHead(302, { Location: "/" });
-      response.end();
+  
+  var query = `INSERT INTO \`noticeData\` VALUES (NULL,'${request.cookies.User}','${title}','${description}', now());`;
+  connection.query(query,function(error,results,fields){
+    if(error){
+      console.log(error);
     }
-  );
-});
-/*
-router.post("/", function (request, response) {
-  var post = request.body;
-  var title = post.title;// Q1 
-  var description = post.description;//Question 1
-  fs.writeFile(
-    `./data/noticeData/${title}`,
-    description,
-    "utf8",
-    function (err) {
-      //response.writeHead(302, { Location: `/?id=${title}` });
-      response.writeHead(302, { Location: "/" });
-      response.end();
+    else{
+      console.log('질문글 생성 완료');
+      response.redirect('../');
     }
-  );
+  });
 });
-*/
 
-/* <--
 module.exports = router;
-지울것 --> */
+
 
 

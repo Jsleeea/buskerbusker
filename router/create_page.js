@@ -1,6 +1,4 @@
 var express = require("express");
-var fs = require("fs");
-var qs = require("querystring");
 var app = express();
 var router = express.Router();
 var cookieParser = require('cookie-parser');
@@ -40,7 +38,7 @@ router.get("/", function (req, res) {
         </head>
       <body>
         <h1><a href="/">BUSKER_BUSKER 질문 게시판</a></h1>
-        <form action="/create" method="post">
+        <form action='/create_process' method="post">
         <p><input type="text" name="title" placeholder="title"></p>
         <p>
           <textarea name="description" placeholder="description"></textarea>
@@ -54,34 +52,6 @@ router.get("/", function (req, res) {
       `;
     res.send(html);
   } 
-});
-
-router.post("/", function (request, response) {
-  var post = request.body;
-  var title = post.title; // Q1
-  var description = post.description; //Question 1
-  
-  var query = `INSERT INTO \`noticeData\` VALUES (NULL,'${req.cookies.User}','${title}','${description}', now());`;
-  connection.query(query,function(error,results,fields){
-    if(error){
-      console.log(error);
-    }
-    else{
-      console.log('질문글 생성 완료');
-    }
-  });
-  /*
-  fs.writeFile(
-    `./data/${title}/answerData/${description}`,
-    description,
-    "utf8",
-    function (err) {
-      //response.writeHead(302, { Location: `/?id=${title}` });
-      response.writeHead(302, { Location: `/page/${title}` });
-      response.end();
-    }
-  );
-  */
 });
 
 module.exports = router;
