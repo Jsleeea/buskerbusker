@@ -38,29 +38,4 @@ router.get("/:pageID", function (request, response) {
   });
 });
 
-/*
-router.get("/:pageID", function (request, response) {
-  fs.readdir("./data/noticeData", function (err, filelist) {
-    var filteredId = path.parse(request.params.pageID).base;
-
-    fs.readFile(
-      `./data/noticeData/${filteredId}`,
-      "utf-8",
-      function (err, description) {
-        var title = request.params.pageID;
-        var list = template.list(filelist);
-        var html = template.HTML(
-          title,
-          list,
-          `
-          <div>답변:</div>
-          <a href='/answer/${filteredId}'>답변하기</a>`,
-          `<h2>${title}</h2>${description}<br>`
-        );
-        response.send(html);
-      }
-    );
-  });
-});
-*/
 module.exports = router;

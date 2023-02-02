@@ -13,7 +13,6 @@ CREATE TABLE `userData` (
   PRIMARY KEY (`num`)
 );
 
-
 --
 -- Dumping data for table `userData`
 --

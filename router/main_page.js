@@ -4,60 +4,55 @@ var template = require("../lib/template.js");
 var router = express.Router();
 var bodyParser = require("body-parser");
 var cookieParser = require('cookie-parser');
+var mysql = require('mysql');
 
 router.use(function (req, res, next) {
   next();
 });
 
+var connection = mysql.createConnection({
+  host     : 'localhost',
+  user     : 'root',
+  password : 'hong6376', // 본인 mySql Password 사용
+  database : 'buskerbuskerData',
+  insecureAuth: true
+});
+
+connection.connect();
 router.use(bodyParser.urlencoded({ extended: false }));
 router.use(cookieParser());
 
 //
 
 router.get("/", function (request, response) {
-  fs.readdir("./data/noticeData", function (error, filelist) {
-    //filelist == mypage, notice;
-    var title = "Web";
-    var description = "this is the main page";
-    var list = template.list(filelist);
-    var html = template.HTML(
-      title,
-      list,
-      `<h2>${title}</h2>${description}`,
-      `
-       <a href="/create">질문 등록하기</a>
-       <a href="/login">로그인</a>
-       <a href="/register">회원가입</a>
-       <br>
-       USER : ${request.cookies.User}
-      `
-    );
-    response.send(html);
+  var query = `select title from noticedata;`;
+
+  connection.query(query, function (error, results, fields) {
+    
+    if (error) {
+      console.log(error);
+    }
+
+    else{
+      var title = "Web";
+      var description = "this is the main page";
+      var list = template.list(results);
+      var html = template.HTML(
+        title,
+        list,
+        `<h2>${title}</h2>${description}`,
+        `
+         <a href="/create">질문 등록하기</a>
+         <a href="/login">로그인</a>
+         <a href="/register">회원가입</a>
+         <br>
+         USER : ${request.cookies.User}
+        `
+      );
+      response.send(html);
+    }
   });
 });
 
-// router.get('/:pageID', function(request, response) {
-//   //fs.readdir('./data', function(error, filelist){
-//      var filteredId = path.parse(request.params.pageID).base;
-//      fs.readFile(`data/${filteredId}`, 'utf8', function(err, description){
-//        var title = request.params.pageID;
-//        var sanitizedTitle = sanitizeHtml(title);
-//        var sanitizedDescription = sanitizeHtml(description, {
-//          allowedTags:['h1']
-//        });
-//        var list = template.list(request.list);
-//        var html = template.HTML(sanitizedTitle, list,
-//          `<h2>${sanitizedTitle}</h2>${sanitizedDescription}`,
-//          ` <a href="/create">create</a>
-//            <a href="/update/${sanitizedTitle}">update</a>
-//            <form action="/delete_process" method="post">
-//              <input type="hidden" name="id" value="${sanitizedTitle}">
-//              <input type="submit" value="delete">
-//            </form>`
-//        );
-//        response.send(html);
-//        });
-//   //});
-//  });
-//
 module.exports = router;
+// 2023_02_02 mysql noticeData list를 어떻게 받을 것인가? __ complete
