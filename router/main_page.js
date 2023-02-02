@@ -32,7 +32,6 @@ router.get("/", function (request, response) {
        USER : ${request.cookies.User}
       `
     );
-    console.log(request.cookies);
     response.send(html);
   });
 });
