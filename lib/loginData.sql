@@ -29,18 +29,19 @@ INSERT INTO `userData` VALUES (3,'HWA','hwa','dnjdy');
 CREATE TABLE `noticeData` (
     `num` int(11) AUTO_INCREMENT,
     `author` varchar(20) NOT NULL,
+    `title` varchar(20) NOT NULL,
     `text` text NOT NULL,
     `created` datetime NOT NULL,
-    PRIMARY KEY (`num`);
+    PRIMARY KEY (`num`)
 );
 
 --
 -- Dumping data for table `noticeData`
 --
 
-INSERT INTO `userData` VALUES (NULL,'HONG','my name is hong','now()');
-INSERT INTO `userData` VALUES (NULL,'DUCK','my name is duck','now()');
-INSERT INTO `userData` VALUES (NULL,'HWA','my name is hwa','now()');
+INSERT INTO `noticeData` VALUES (NULL,'HONG','HELLO','my name is hong', now());
+INSERT INTO `noticeData` VALUES (NULL,'DUCK','NODEJS','my name is duck', now());
+INSERT INTO `noticeData` VALUES (NULL,'HWA','HARD','my name is hwa', now());
 
 /* 참고용 주석
 --
