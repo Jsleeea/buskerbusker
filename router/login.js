@@ -57,10 +57,11 @@ router.post('/',function (req, res) {
         else{
             if(pwd == results[0].password){ // password
                 console.log("로그인 성공");
+                console.log('로그인 id :', id); // 확인용
                 res.cookie("User",id,{
                     maxAge: 60*60*1000,
                     httpOnly: true,
-                    path:'/visitors'
+                    path:'/'
                 });
                 res.redirect("../");
             }

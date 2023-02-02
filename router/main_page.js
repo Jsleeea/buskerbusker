@@ -10,6 +10,7 @@ router.use(function (req, res, next) {
 });
 
 router.use(bodyParser.urlencoded({ extended: false }));
+router.use(cookieParser());
 
 //
 
@@ -27,8 +28,11 @@ router.get("/", function (request, response) {
        <a href="/create">질문 등록하기</a>
        <a href="/login">로그인</a>
        <a href="/register">회원가입</a>
+       <br>
+       USER : ${request.cookies.User}
       `
     );
+    console.log(request.cookies);
     response.send(html);
   });
 });
