@@ -1,3 +1,4 @@
+/* <--- 이것만 지우면 됨.
 var express = require("express");
 var fs = require("fs");
 var qs = require("querystring");
@@ -46,4 +47,9 @@ router.post("/", function (request, response) {
   );
 });
 */
+
+/* <--
 module.exports = router;
+지울것 --> */
+
+
