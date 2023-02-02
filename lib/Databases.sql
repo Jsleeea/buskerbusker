@@ -42,6 +42,27 @@ INSERT INTO `noticeData` VALUES (NULL,'HONG','HELLO','my name is hong', now());
 INSERT INTO `noticeData` VALUES (NULL,'DUCK','NODEJS','my name is duck', now());
 INSERT INTO `noticeData` VALUES (NULL,'HWA','HARD','my name is hwa', now());
 
+--
+-- Table structure for table `commentData`
+--
+
+CREATE TABLE `commentData` (
+    `num` int(11) AUTO_INCREMENT,
+    `author` varchar(20) NOT NULL,
+    `noticeTitle` varchar(20) NOT NULL,
+    `text` text NOT NULL,
+    `created` datetime NOT NULL,
+    PRIMARY KEY (`num`)
+);
+
+--
+-- Dumping data for table `commentData`
+--
+
+INSERT INTO `commentData` VALUES (NULL,'HONG','HELLO','nice to meet you', now());
+INSERT INTO `commentData` VALUES (NULL,'DUCK','NODEJS','this is test', now());
+INSERT INTO `commentData` VALUES (NULL,'HWA','HARD','너무 어려웡', now());
+
 /* 참고용 주석
 --
 -- Table structure for table `topic`
