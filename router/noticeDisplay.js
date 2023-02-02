@@ -1,16 +1,58 @@
 const { response, request } = require("express");
 var express = require("express");
 var router = express.Router();
-//var router = express.Router({ mergeParams: true });
 var template = require("../lib/template.js");
 var fs = require("fs");
 var path = require("path");
+var mysql = require('mysql');
+const e = require("express");
 
 router.use(function (req, res, next) {
   next();
 });
 
-router.get("/:pageID", function (request, response) {
+var connection = mysql.createConnection({
+  host     : 'localhost',
+  user     : 'root',
+  password : 'hong6376', // 본인 mySql Password 사용
+  database : 'buskerbuskerData',
+  insecureAuth: true
+});
+
+connection.connect();
+
+router.get("/:pageID", function (req, res) {
+  var filteredId = path.parse(req.params.pageID).base;
+  var query = `select * from noticedata where title = '${filteredId}';`
+  var query_2 = `select title from noticedata;`;
+
+  connection.query(query, function(error, results, fields){
+    if(error){
+      console.log(error);
+    }
+    else{
+      connection.query(query_2,function(error_2, results_2, fields_2){;
+        if(error_2){
+          console.log(error_2);
+        }
+        else{
+          var title = results[0].title;
+          var description = results[0].text;
+          var list = template.list(results_2);
+          var html = template.HTML(
+            title,
+            list,
+            ``,
+            `<h2>${title}</h2>${description}<br><br>`
+          );
+          res.send(html);
+        }
+      })
+    }
+  });
+
+  
+  /*
   fs.readdir("./data/noticeData", function (err, filelist) {
     var filteredId = path.parse(request.params.pageID).base;
     fs.readdir( `./data/${filteredId}/answerData`,function (err, answer_filelist) { //여기서 오류
@@ -36,6 +78,10 @@ router.get("/:pageID", function (request, response) {
       }
     );
   });
+  */
+
 });
 
 module.exports = router;
+
+// 2023_02_02 mysql noticeData list를 어떻게 받을 것인가?
