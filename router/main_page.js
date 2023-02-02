@@ -3,6 +3,7 @@ var fs = require("fs");
 var template = require("../lib/template.js");
 var router = express.Router();
 var bodyParser = require("body-parser");
+var cookieParser = require('cookie-parser');
 
 router.use(function (req, res, next) {
   next();

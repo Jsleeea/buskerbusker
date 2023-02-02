@@ -1,6 +1,7 @@
 var express = require("express");
 var router = express.Router();
 var mysql = require('mysql');
+var cookieParser = require('cookie-parser');
 
 router.use(function (req, res, next) {
   next();

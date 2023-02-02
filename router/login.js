@@ -58,8 +58,9 @@ router.post('/',function (req, res) {
             if(pwd == results[0].password){ // password
                 console.log("로그인 성공");
                 res.cookie("User",id,{
-                    expire: new Date(Date.now() + 900000),
-                    httpOnly: true
+                    maxAge: 60*60*1000,
+                    httpOnly: true,
+                    path:'/visitors'
                 });
                 res.redirect("../");
             }
