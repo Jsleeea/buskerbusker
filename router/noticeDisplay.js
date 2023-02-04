@@ -25,6 +25,8 @@ router.get("/:pageID", function (req, res) {
   var filteredId = path.parse(req.params.pageID).base;
   var query = `select * from noticedata where title = '${filteredId}';`
   var query_2 = `select title from noticedata;`;
+  var query_3 = `select * from commentdata where noticetitle = '${filteredId}';`;
+
 
   connection.query(query, function(error, results, fields){
     if(error){
@@ -36,16 +38,29 @@ router.get("/:pageID", function (req, res) {
           console.log(error_2);
         }
         else{
-          var title = results[0].title;
-          var description = results[0].text;
-          var list = template.list(results_2);
-          var html = template.HTML(
-            title,
-            list,
-            ``,
-            `<h2>${title}</h2>${description}<br><br>`
-          );
-          res.send(html);
+          connection.query(query_3,function(error_3, results_3, fields_3){
+            if(error_3){
+              console.log(error_3);
+            }
+            else{
+              var title = results[0].title;
+              var description = results[0].text;
+              var list = template.list(results_2);
+              var answer_list = template.answer_list(results_3);
+              var html = template.HTML(
+                title,
+                list,
+                `
+                <div>답변:</div>
+                ${answer_list}
+                <a href='/answer/${filteredId}'>답변하기</a>
+                `,
+                `<h2>${title}</h2>${description}<br><br>`
+              );
+              res.send(html);
+            }
+
+          });
         }
       })
     }
@@ -83,5 +98,3 @@ router.get("/:pageID", function (req, res) {
 });
 
 module.exports = router;
-
-// 2023_02_02 mysql noticeData list를 어떻게 받을 것인가?

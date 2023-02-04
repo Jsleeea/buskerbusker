@@ -35,6 +35,3 @@ router.post('/', function (request, response) {
 });
 
 module.exports = router;
-
-
-
