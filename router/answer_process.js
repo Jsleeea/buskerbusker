@@ -3,7 +3,7 @@ var fs = require("fs");
 var qs = require("querystring");
 var app = express();
 var router = express.Router();
-var mysql = require('mysql');
+var mysql = require("mysql");
 var path = require("path");
 
 //var cookieParser = require('cookie-parser');
@@ -14,11 +14,11 @@ router.use(function (req, res, next) {
 });
 
 var connection = mysql.createConnection({
-  host     : 'localhost',
-  user     : 'root',
-  password : 'hong6376', // 본인 mySql Password 사용
-  database : 'buskerbuskerData',
-  insecureAuth: true
+  host: "localhost",
+  user: "root",
+  password: "junsung", // 본인 mySql Password 사용
+  database: "buskerbuskerData",
+  insecureAuth: true,
 });
 
 connection.connect();
@@ -30,7 +30,7 @@ router.post("/", function (request, response) {
   var post = request.body;
   var comment = post.comment;
   console.log(title);
-  response.redirect('../');
+  response.redirect("../");
   /*
   var query = `INSERT INTO \`commentData\` VALUES (NULL,'${request.cookies.User}','${title}','${comment}', now());`;
   connection.query(query,function(error,results,fields){
@@ -43,7 +43,7 @@ router.post("/", function (request, response) {
     }
   });
   */
-/*
+  /*
   fs.writeFile(
     `./data/${title}/answerData/${description}`,
     description,

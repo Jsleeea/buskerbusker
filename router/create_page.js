@@ -1,19 +1,19 @@
 var express = require("express");
 var app = express();
 var router = express.Router();
-var cookieParser = require('cookie-parser');
-var mysql = require('mysql');
+var cookieParser = require("cookie-parser");
+var mysql = require("mysql");
 
 router.use(function (req, res, next) {
   next();
 });
 
 var connection = mysql.createConnection({
-  host     : 'localhost',
-  user     : 'root',
-  password : 'hong6376', // 본인 mySql Password 사용
-  database : 'buskerbuskerData',
-  insecureAuth: true
+  host: "localhost",
+  user: "root",
+  password: "junsung", // 본인 mySql Password 사용
+  database: "buskerbuskerData",
+  insecureAuth: true,
 });
 
 connection.connect();
@@ -21,13 +21,10 @@ connection.connect();
 router.use(cookieParser());
 
 router.get("/", function (req, res) {
-
-  if(req.cookies.User == undefined){
+  if (req.cookies.User == undefined) {
     res.redirect("../");
     console.log("먼저 로그인 하세요.");
-  }
-
-  else{
+  } else {
     var title = "Welcome";
     var html = `
       <!doctype html>
@@ -51,7 +48,7 @@ router.get("/", function (req, res) {
       </html>
       `;
     res.send(html);
-  } 
+  }
 });
 
 module.exports = router;

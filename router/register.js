@@ -1,23 +1,22 @@
 var express = require("express");
 var router = express.Router();
-var mysql = require('mysql');
-var cookieParser = require('cookie-parser');
+var mysql = require("mysql");
+var cookieParser = require("cookie-parser");
 
 router.use(function (req, res, next) {
   next();
 });
 
 var connection = mysql.createConnection({
-    host     : 'localhost',
-    user     : 'root',
-    password : 'hong6376', // 본인 mySql Password 사용
-    database : 'buskerbuskerData',
-    insecureAuth: true
+  host: "localhost",
+  user: "root",
+  password: "junsung", // 본인 mySql Password 사용
+  database: "buskerbuskerData",
+  insecureAuth: true,
 });
 
-router.get('/', function (req, res) {
-    var template = 
-    `<!DOCTYPE html>
+router.get("/", function (req, res) {
+  var template = `<!DOCTYPE html>
     <html>
         <body>
             <form action='/register' method='post'>
@@ -29,33 +28,32 @@ router.get('/', function (req, res) {
             </form>
         </body>
     </html>`;
-    res.writeHead(200, {'ContentType':'text/html'});
-    res.write(template);
-    res.end();
+  res.writeHead(200, { ContentType: "text/html" });
+  res.write(template);
+  res.end();
 });
 
 connection.connect();
 
-router.post('/',function (req, res) {
-   var body = req.body;
-   var id = body.register_id;
-   var pw = body.register_pw;
-   var q = body.register_Q;
+router.post("/", function (req, res) {
+  var body = req.body;
+  var id = body.register_id;
+  var pw = body.register_pw;
+  var q = body.register_Q;
 
-   var query = `
+  var query = `
    INSERT INTO \`userData\` VALUES (NULL,'${id}','${pw}','${q}');
-   `
+   `;
 
-   connection.query(query, function (error, results, fields) {
+  connection.query(query, function (error, results, fields) {
     if (error) {
-        console.log(error);
+      console.log(error);
+    } else {
+      console.log("회원가입 성공");
     }
-    else{
-        console.log('회원가입 성공');
-    }
-   });
+  });
 
-   res.redirect('/');
+  res.redirect("/");
 });
 
 module.exports = router;

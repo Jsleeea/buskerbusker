@@ -3,19 +3,19 @@ var fs = require("fs");
 var template = require("../lib/template.js");
 var router = express.Router();
 var bodyParser = require("body-parser");
-var cookieParser = require('cookie-parser');
-var mysql = require('mysql');
+var cookieParser = require("cookie-parser");
+var mysql = require("mysql");
 
 router.use(function (req, res, next) {
   next();
 });
 
 var connection = mysql.createConnection({
-  host     : 'localhost',
-  user     : 'root',
-  password : 'hong6376', // 본인 mySql Password 사용
-  database : 'buskerbuskerData',
-  insecureAuth: true
+  host: "localhost",
+  user: "root",
+  password: "junsung", // 본인 mySql Password 사용
+  database: "buskerbuskerData",
+  insecureAuth: true,
 });
 
 connection.connect();
@@ -28,12 +28,9 @@ router.get("/", function (request, response) {
   var query = `select title from noticedata;`;
 
   connection.query(query, function (error, results, fields) {
-    
     if (error) {
       console.log(error);
-    }
-
-    else{
+    } else {
       var title = "Web";
       var description = "this is the main page";
       var list = template.list(results);

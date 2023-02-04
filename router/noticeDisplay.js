@@ -4,45 +4,42 @@ var router = express.Router();
 var template = require("../lib/template.js");
 var fs = require("fs");
 var path = require("path");
-var mysql = require('mysql');
+var mysql = require("mysql");
 const e = require("express");
+const { fileURLToPath } = require("url");
 
 router.use(function (req, res, next) {
   next();
 });
 
 var connection = mysql.createConnection({
-  host     : 'localhost',
-  user     : 'root',
-  password : 'hong6376', // 본인 mySql Password 사용
-  database : 'buskerbuskerData',
-  insecureAuth: true
+  host: "localhost",
+  user: "root",
+  password: "junsung", // 본인 mySql Password 사용
+  database: "buskerbuskerData",
+  insecureAuth: true,
 });
 
 connection.connect();
 
 router.get("/:pageID", function (req, res) {
   var filteredId = path.parse(req.params.pageID).base;
-  var query = `select * from noticedata where title = '${filteredId}';`
+  var query = `select * from noticedata where title = '${filteredId}';`;
   var query_2 = `select title from noticedata;`;
   var query_3 = `select * from commentdata where noticetitle = '${filteredId}';`;
-
-
-  connection.query(query, function(error, results, fields){
-    if(error){
+  //console.log(filteredId); HARD, ㄱㄱㄱ
+  connection.query(query, function (error, results, fields) {
+    if (error) {
       console.log(error);
-    }
-    else{
-      connection.query(query_2,function(error_2, results_2, fields_2){;
-        if(error_2){
+    } else {
+      connection.query(query_2, function (error_2, results_2, fields_2) {
+        if (error_2) {
           console.log(error_2);
-        }
-        else{
-          connection.query(query_3,function(error_3, results_3, fields_3){
-            if(error_3){
+        } else {
+          connection.query(query_3, function (error_3, results_3, fields_3) {
+            if (error_3) {
               console.log(error_3);
-            }
-            else{
+            } else {
               var title = results[0].title;
               var description = results[0].text;
               var list = template.list(results_2);
@@ -50,7 +47,14 @@ router.get("/:pageID", function (req, res) {
               var html = template.HTML(
                 title,
                 list,
+                /*
+                 */
                 `
+               <form action="/delete_process" method="post">
+                 <input type="hidden" name="id" value="${filteredId}">
+                 <input type="submit" value="delete">
+               </form><br><br>
+
                 <div>답변:</div>
                 ${answer_list}
                 <a href='/answer/${filteredId}'>답변하기</a>
@@ -59,14 +63,12 @@ router.get("/:pageID", function (req, res) {
               );
               res.send(html);
             }
-
           });
         }
-      })
+      });
     }
   });
 
-  
   /*
   fs.readdir("./data/noticeData", function (err, filelist) {
     var filteredId = path.parse(request.params.pageID).base;
@@ -94,7 +96,6 @@ router.get("/:pageID", function (req, res) {
     );
   });
   */
-
 });
 
 module.exports = router;
