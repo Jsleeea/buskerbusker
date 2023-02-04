@@ -30,7 +30,7 @@ router.get("/:pageID", function (req, res) {
   var query_2 = `select title from noticedata;`;
   var query_3 = `select * from commentdata where noticetitle = '${filteredId}';`;
   var query_4 = `select num from noticedata where title = 'HELLO'`;
-  //console.log(filteredId); HARD, ㄱㄱㄱ
+
   connection.query(query, function (error, results, fields) {
     if (error) {
       console.log(error);
@@ -43,12 +43,19 @@ router.get("/:pageID", function (req, res) {
             if (error_3) {
               console.log(error_3);
             } else {
-              var id = results[0].num;
-              console.log(id);
               var title = results[0].title;
               var description = results[0].text;
               var list = template.list(results_2);
               var answer_list = template.answer_list(results_3);
+              var Delete = ``;
+              
+              console.log(req.cookies.User);
+              console.log(results[0].author);
+
+              if(req.cookies.User == results[0].author){
+                Delete = `<input type="submit" value="delete">`;
+              }
+
               var html = template.HTML(
                 title,
                 list,
@@ -56,8 +63,7 @@ router.get("/:pageID", function (req, res) {
                  */
                 `
                <form action="/delete_process" method="post">
-                 <input type="hidden" name="id" value="${id}">
-                 <input type="submit" value="delete">
+                 ${Delete}
                </form><br><br>
 
                 <div>답변:</div>
@@ -73,34 +79,6 @@ router.get("/:pageID", function (req, res) {
       });
     }
   });
-
-  /*
-  fs.readdir("./data/noticeData", function (err, filelist) {
-    var filteredId = path.parse(request.params.pageID).base;
-    fs.readdir( `./data/${filteredId}/answerData`,function (err, answer_filelist) { //여기서 오류
-        fs.readFile(
-          `./data/noticeData/${filteredId}`,
-          "utf-8",
-          function (err, description) {
-            var title = request.params.pageID;
-            var list = template.list(filelist);
-            var answer_list = template.answer_list(answer_filelist);
-            var html = template.HTML(
-              title,
-              list,
-              `
-            <div>답변:</div>
-            ${answer_list}
-            <a href='/answer/${filteredId}'>답변하기</a>`,
-              `<h2>${title}</h2>${description}<br><br>`
-            );
-            response.send(html);
-          }
-        );
-      }
-    );
-  });
-  */
 });
 
 module.exports = router;
