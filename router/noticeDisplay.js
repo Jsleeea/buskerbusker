@@ -53,7 +53,11 @@ router.get("/:pageID", function (req, res) {
               console.log(results[0].author);
 
               if(req.cookies.User == results[0].author){
-                Delete = `<input type="submit" value="delete">`;
+                Delete = 
+                `
+                <input type="submit" value="delete">
+                <input type="hidden" name="title" value=${title}>
+                `;
               }
 
               var html = template.HTML(
