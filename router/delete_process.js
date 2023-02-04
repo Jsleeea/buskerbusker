@@ -19,8 +19,8 @@ connection.connect();
 router.post("/", function (request, response) {
   var post = request.body;
   var id = post.id; // ㄱㄱㄱ, HARD
-  //var title = post.title; // Q1
-  //var description = post.description; //Question 1
+  console.log(post.id);
+
   connection.query(
     "DELETE FROM noticedata WHERE id = ?",
     [post.id],

@@ -24,9 +24,11 @@ connection.connect();
 
 router.get("/:pageID", function (req, res) {
   var filteredId = path.parse(req.params.pageID).base;
+  console.log(path.parse(req.params.pageID));
   var query = `select * from noticedata where title = '${filteredId}';`;
   var query_2 = `select title from noticedata;`;
   var query_3 = `select * from commentdata where noticetitle = '${filteredId}';`;
+  var query_4 = `select num from noticedata where title = 'HELLO'`;
   //console.log(filteredId); HARD, ㄱㄱㄱ
   connection.query(query, function (error, results, fields) {
     if (error) {
@@ -40,6 +42,8 @@ router.get("/:pageID", function (req, res) {
             if (error_3) {
               console.log(error_3);
             } else {
+              var id = results[0].num;
+              console.log(id);
               var title = results[0].title;
               var description = results[0].text;
               var list = template.list(results_2);
@@ -51,7 +55,7 @@ router.get("/:pageID", function (req, res) {
                  */
                 `
                <form action="/delete_process" method="post">
-                 <input type="hidden" name="id" value="${filteredId}">
+                 <input type="hidden" name="id" value="${id}">
                  <input type="submit" value="delete">
                </form><br><br>
 
