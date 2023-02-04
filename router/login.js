@@ -6,7 +6,7 @@ var cookieParser = require("cookie-parser");
 var connection = mysql.createConnection({
   host: "localhost",
   user: "root",
-  password: "junsung", // 본인 mySql Password 사용
+  password: "hong6376",
   database: "buskerbuskerData",
   insecureAuth: true,
 });

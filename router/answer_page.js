@@ -4,7 +4,7 @@ var router = express.Router();
 var template = require("../lib/template.js");
 var fs = require("fs");
 var path = require("path");
-var mysql = require('mysql');
+//var mysql = require('mysql');
 
 router.use(function (req, res, next) {
   next();

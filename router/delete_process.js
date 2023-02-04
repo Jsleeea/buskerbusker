@@ -1,3 +1,5 @@
+/*
+
 var express = require("express");
 var app = express();
 var router = express.Router();
@@ -10,7 +12,8 @@ router.use(function (req, res, next) {
 var connection = mysql.createConnection({
   host: "localhost",
   user: "root",
-  password: "junsung", // 본인 mySql Password 사용
+  // password: "junsung", // 본인 mySql Password 사용
+  password: "hong6376",
   database: "buskerbuskerData",
   insecureAuth: true,
 });
@@ -33,16 +36,8 @@ router.post("/", function (request, response) {
       }
     }
   );
-  /*
-    var query = `INSERT INTO \`noticeData\` VALUES (NULL,'${request.cookies.User}','${title}','${description}', now());`;
-    connection.query(query, function (error, results, fields) {
-        if (error) {
-            console.log(error);
-        } else {
-            console.log("질문글 생성 완료");
-            response.redirect("../");
-        }
-    });
-    */
-});
+
 module.exports = router;
+
+*/
+

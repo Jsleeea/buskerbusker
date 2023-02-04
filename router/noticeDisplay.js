@@ -15,7 +15,8 @@ router.use(function (req, res, next) {
 var connection = mysql.createConnection({
   host: "localhost",
   user: "root",
-  password: "junsung", // 본인 mySql Password 사용
+  password: "hong6376",
+  //password: "junsung", // 본인 mySql Password 사용
   database: "buskerbuskerData",
   insecureAuth: true,
 });
