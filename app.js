@@ -1,8 +1,6 @@
 var express = require("express");
-var fs = require("fs");
-var qs = require("querystring");
-
 var app = express();
+
 var router_mainPage = require("./router/main_page");
 var router_displayPage = require("./router/noticeDisplay");
 var router_myPage = require("./router/myPage");
@@ -28,15 +26,3 @@ app.use("/answer_process", router_answerProcess);
 app.use("/page", router_displayPage);
 app.use("/login", router_loginPage);
 app.use("/register", router_registerPage);
-
-/*
-app.use((req, res, next) => {
-  res.status(/n404).send("Not Found");
-});
-*/
-/*
-fs.readdir("./data", function (error, filelist) {
-  app.use("/page/:pageId", router_displayPage);
-});
-*/
-// 흠..

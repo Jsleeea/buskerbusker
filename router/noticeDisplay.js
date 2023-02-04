@@ -48,10 +48,7 @@ router.get("/:pageID", function (req, res) {
               var list = template.list(results_2);
               var answer_list = template.answer_list(results_3);
               var Delete = ``;
-              
-              console.log(req.cookies.User);
-              console.log(results[0].author);
-
+             
               if(req.cookies.User == results[0].author){
                 Delete = 
                 `
