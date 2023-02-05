@@ -52,4 +52,3 @@ router.get("/", function (request, response) {
 });
 
 module.exports = router;
-// 2023_02_02 mysql noticeData list를 어떻게 받을 것인가? __ complete
