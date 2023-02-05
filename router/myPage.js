@@ -6,7 +6,7 @@ router.use(function (req, res, next) {
   next();
 });
 
-router.get("/", function (req, res) {
+router.get("/:userID", function (req, res) {
   var html = `
     <!doctype html>
     <html>

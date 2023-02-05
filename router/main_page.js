@@ -43,7 +43,7 @@ router.get("/", function (request, response) {
          <a href="/login">로그인</a>
          <a href="/register">회원가입</a>
          <br>
-         USER : ${request.cookies.User}
+         USER : <a href="/myPage/${request.cookies.User}">${request.cookies.User}</a>
         `
       );
       response.send(html);
