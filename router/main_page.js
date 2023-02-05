@@ -37,9 +37,9 @@ router.get("/", function (request, response) {
       var html = template.HTML(
         title,
         list,
-        `<h2>${title}</h2>${description}`,
+        ``,
         `
-         <a style="text-decoration: none; color: #fff; font-size: 16px;background-color: #FF7B54;margin-top: 20px; border-radius: 6px;" href="/create">질문 등록하기</a>
+         <a style="text-decoration: none; color: #fff; font-size: 14px;background-color: #FF7B54;margin-top: 20px; border-radius: 6px;" href="/create">질문 등록하기</a>
          
          <br>
          USER : <a href="/myPage/${request.cookies.User}">${request.cookies.User}</a>

@@ -107,13 +107,13 @@ router.get("/:pageID", function (req, res) {
 <body>
   <h1><a id = 'main' href="/">BUSKERBUSKER</a></h1>
   <h2>${title}</h2>${description}<br><br>
+  
+  <div>답변:</div>
+  ${answer_list}
+  <a href='/answer/${filteredId}'>답변하기</a>
   <form action="/delete_process" method="post">
     ${Delete}
   </form><br><br>
-
-   <div>답변:</div>
-   ${answer_list}
-   <a href='/answer/${filteredId}'>답변하기</a>
 </body>
 </html>
 
