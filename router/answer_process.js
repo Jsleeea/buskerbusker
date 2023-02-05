@@ -13,7 +13,7 @@ router.use(function (req, res, next) {
 var connection = mysql.createConnection({
   host: "localhost",
   user: "root",
-  password: "hong6376",
+  password: "junsung",
   database: "buskerbuskerData",
   insecureAuth: true,
 });
@@ -27,13 +27,12 @@ router.post("/", function (request, response) {
   console.log(title);
 
   var query = `INSERT INTO \`commentData\` VALUES (NULL,'${request.cookies.User}','${title}','${comment}', now());`;
-  connection.query(query,function(error,results,fields){
-    if(error){
+  connection.query(query, function (error, results, fields) {
+    if (error) {
       console.log(error);
-    }
-    else{
-      console.log('답변 생성 완료');
-      response.redirect('../');
+    } else {
+      console.log("답변 생성 완료");
+      response.redirect("../");
     }
   });
 });

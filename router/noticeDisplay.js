@@ -15,7 +15,7 @@ router.use(function (req, res, next) {
 var connection = mysql.createConnection({
   host: "localhost",
   user: "root",
-  password: "hong6376",
+  password: "junsung",
   //password: "junsung", // 본인 mySql Password 사용
   database: "buskerbuskerData",
   insecureAuth: true,
@@ -48,10 +48,9 @@ router.get("/:pageID", function (req, res) {
               var list = template.list(results_2);
               var answer_list = template.answer_list(results_3);
               var Delete = ``;
-             
-              if(req.cookies.User == results[0].author){
-                Delete = 
-                `
+
+              if (req.cookies.User == results[0].author) {
+                Delete = `
                 <input type="submit" value="delete">
                 <input type="hidden" name="title" value=${title}>
                 `;
