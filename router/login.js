@@ -46,6 +46,7 @@ router.get("/", function (req, res) {
             body {
                 height: 100vh;
                 display: flex;
+                flex-direction: column;
                 justify-content: center;
                 align-items: center;
                 font-size: 14px;
@@ -85,12 +86,22 @@ router.get("/", function (req, res) {
                 background-color: #FF7B54;
                 margin-top: 20px;
             }
+            #main>a{
+              text-decoration: none;
+              font-size: 50px;
+              color: #FF7B54;
+          }
+          #space{
+              height: 20px;
+          }
     
             
         </style>
     </head>
     
     <body>
+        <div id = 'main'><a href="/">BUSKERBUSKER</a></div>
+        <div id = 'space'></div>
         <div class="login-wrapper">
             <h2>Login</h2>
             <form method="post" action="/login" id="login-form">
