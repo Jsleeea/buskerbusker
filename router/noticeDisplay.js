@@ -73,50 +73,104 @@ router.get("/:pageID", function (req, res) {
                 ``
               );
               */
+
               var html = `
-            
-<!doctype html>
+             <!doctype html>
 <html>
+
 <head>
   <title>WEB1 - ${title}</title>
   <meta charset="utf-8">
   <style>
-  * {
+    * {
       padding: 0;
       margin: 0;
       border: none;
-  }
-  body {
-          height: 100vh;
-          display: flex;
-          flex-direction: column;
-          justify-content: flex-start;
-          align-items: center;
-          font-size: 14px;
-          font-family: 'Roboto', sans-serif;
-      }
-      #main {
-        text-decoration: none;
-        font-weight: bold;
-        font-size: 50px;
-        color: #FF7B54;
     }
-   
-</style>
-</head>
-<body>
-  <h1><a id = 'main' href="/">BUSKERBUSKER</a></h1>
-  <h2>${title}</h2>${description}<br><br>
-  
-  <div>답변:</div>
-  ${answer_list}
-  <a href='/answer/${filteredId}'>답변하기</a>
-  <form action="/delete_process" method="post">
-    ${Delete}
-  </form><br><br>
-</body>
-</html>
+    #notice_box{
+      padding: 0px 20px 0px 20px;
+    }
 
+    body {
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: center;
+      font-size: 14px;
+      font-family: 'Roboto', sans-serif;
+    }
+
+    #main {
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 50px;
+      color: #FF7B54;
+    }
+
+    #describe {
+      margin: 20px 0px 30px 0px;
+    }
+
+    .q_a{
+      font-weight: bold;
+      font-size: 35px;
+      color: #FF7B54;
+    }
+    #answer{
+      font-weight: bold;
+      font-size: 22px;
+      color: #FF7B54;
+    }
+
+    #title_ {
+      font-weight: bold;
+      font-size: 25px;
+    }
+    #answer_btn{
+      text-decoration: none;
+      width: 100%;
+      color: white;
+                height: 48px;
+                padding: 0 10px;
+                box-sizing: border-box;
+                margin-bottom: 16px;
+                border-radius: 6px;
+                background-color: #FF7B54;
+    }
+    #answer_box{
+      margin: 50px 0px 0px 0px;
+      padding: 50px 0px 0px 0px;
+    }
+  </style>
+</head>
+
+<body>
+  <div id='notice_box'>
+
+    <h1><a id='main' href="/">BUSKERBUSKER</a></h1>
+    <div id='describe'>
+      <span class='q_a'>Q</span>
+      <span id='title_'>${title}</span>
+      <div>
+        ${description}<br><br>
+      </div>
+    </div>
+    <div id ='answer_box'>
+      <div id ='answer'>답변:</div>
+      ${answer_list}
+    </div>
+    <div><br>
+
+      <a id="answer_btn" href='/answer/${filteredId}'>답변하기</a>
+      <form action="/delete_process" method="post">
+        ${Delete}
+      </form><br><br>
+    </div>
+  </div>
+</body>
+
+</html>
              `;
               res.send(html);
             }
