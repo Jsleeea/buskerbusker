@@ -100,7 +100,7 @@ router.get("/", function (req, res) {
               color: #FF7B54;
           }
           #space{
-              height: 30px;
+              height: 20px;
           }
   
           

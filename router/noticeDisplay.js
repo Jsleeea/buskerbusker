@@ -55,7 +55,7 @@ router.get("/:pageID", function (req, res) {
                 <input type="hidden" name="title" value=${title}>
                 `;
               }
-
+              /*
               var html = template.notice_HTML(
                 title,
                 "",
@@ -72,6 +72,52 @@ router.get("/:pageID", function (req, res) {
                 `<h2>${title}</h2>${description}<br><br>`,
                 ``
               );
+              */
+              var html = `
+            
+<!doctype html>
+<html>
+<head>
+  <title>WEB1 - ${title}</title>
+  <meta charset="utf-8">
+  <style>
+  * {
+      padding: 0;
+      margin: 0;
+      border: none;
+  }
+  body {
+          height: 100vh;
+          display: flex;
+          flex-direction: column;
+          justify-content: flex-start;
+          align-items: center;
+          font-size: 14px;
+          font-family: 'Roboto', sans-serif;
+      }
+      #main {
+        text-decoration: none;
+        font-weight: bold;
+        font-size: 50px;
+        color: #FF7B54;
+    }
+   
+</style>
+</head>
+<body>
+  <h1><a id = 'main' href="/">BUSKERBUSKER</a></h1>
+  <h2>${title}</h2>${description}<br><br>
+  <form action="/delete_process" method="post">
+    ${Delete}
+  </form><br><br>
+
+   <div>답변:</div>
+   ${answer_list}
+   <a href='/answer/${filteredId}'>답변하기</a>
+</body>
+</html>
+
+             `;
               res.send(html);
             }
           });
