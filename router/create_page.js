@@ -66,7 +66,8 @@ router.get("/", function (req, res) {
                   height: 100vh;
                   display: flex;
                   flex-direction: column;
-                  justify-content: center;
+                 
+                  justify-content: flex-start;
                   align-items: center;
                   font-size: 14px;
                   font-family: 'Roboto', sans-serif;
