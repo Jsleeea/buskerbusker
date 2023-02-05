@@ -39,12 +39,13 @@ router.get("/", function (request, response) {
         list,
         `<h2>${title}</h2>${description}`,
         `
-         <a href="/create">질문 등록하기</a>
-         <a href="/login">로그인</a>
-         <a href="/register">회원가입</a>
+         <a style="text-decoration: none; color: #fff; font-size: 16px;background-color: #FF7B54;margin-top: 20px; border-radius: 6px;" href="/create">질문 등록하기</a>
+         
          <br>
          USER : <a href="/myPage/${request.cookies.User}">${request.cookies.User}</a>
-        `
+        `,
+        `<a style="text-decoration: none; color:#FFB26B;" href="/login">로그인</a>
+        <a style="text-decoration: none; color:#FFB26B;" href="/register">회원가입</a>`
       );
       response.send(html);
     }

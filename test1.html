@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Homepage</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            border: none;
+        }
+        body {
+                height: 100vh;
+                display: flex;
+                flex-direction: column;
+                justify-content: flex-start;
+                align-items: center;
+                font-size: 14px;
+                font-family: 'Roboto', sans-serif;
+            }
+            
+    
+
+        #list>ul>li {
+            border-top: 1px solid #FF7B54;
+            margin: 30px auto;
+            width: 300px;
+            font-weight: bold;
+            margin: 14px 0px 0px;
+            padding: 4px 4px 16px 18px;
+        }
+
+        #main {
+            font-weight: bold;
+            font-size: 50px;
+            color: #FF7B54;
+        }
+    </style>
+</head>
+
+<body>
+    <div id='main'>BUSKERBUSKER</div>
+    <div><a href="/login">로그인</a>
+        <a href="/register">회원가입</a>
+    </div>
+    <div id='list'>
+        <ul>
+            <li>hello</li>
+            
+            <li>nodejs</li>
+            <li>hard</li>
+        </ul>
+    </div>
+    <a href="/create">질문 등록하기</a>
+</body>
+
+</html>
