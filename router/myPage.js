@@ -9,8 +9,10 @@ router.use(cookieParser());
 
 router.get("/:userID", function (req, res){
   if(req.cookies.User == undefined){
-    console.log('먼저 로그인 해주세요.');
-    res.redirect('../');
+    res.send(`
+      <script>alert('먼저 로그인 후 이용해주세요.')</script>
+      <script>window.location=\"../\"</script>`
+    );
   }
   else{
     var html = `

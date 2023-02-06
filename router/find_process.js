@@ -29,8 +29,8 @@ router.post("/", function (req, res){
     } else {
         if(results[0].Q_Answer == ANSWER){
             res.send(`
-            <script>window.location=\"../\"</script>
-            <script>alert('${results[0].password}')</script>`
+            <script>alert('비밀번호 : ${results[0].password}')</script>
+            <script>window.location=\"../\"</script>`
             );
         }
         else{
