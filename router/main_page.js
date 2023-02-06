@@ -44,8 +44,11 @@ router.get("/", function (request, response) {
          <br>
          USER : <a href="/myPage/${request.cookies.User}">${request.cookies.User}</a>
         `,
-        `<a style="text-decoration: none; color:#FFB26B;" href="/login">로그인</a>
-        <a style="text-decoration: none; color:#FFB26B;" href="/register">회원가입</a>`
+        `
+        <a style="text-decoration: none; color:#FFB26B;" href="/login">로그인</a>
+        <a style="text-decoration: none; color:#FFB26B;" href="/register">회원가입</a>
+        <a style="text-decoration: none; color:#FFB26B;" href="/find">비밀번호 찾기</a>
+        `
       );
       response.send(html);
     }

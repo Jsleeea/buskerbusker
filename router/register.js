@@ -16,20 +16,6 @@ var connection = mysql.createConnection({
 });
 
 router.get("/", function (req, res) {
-  /*
-  var template = `<!DOCTYPE html>
-    <html>
-        <body>
-            <form action='/register' method='post'>
-                ID : <input type='text' name='register_id'><br>
-                PWD : <input type='password' name='register_pw'><br>
-                Question : What is your middle school? <br>
-                Answer : <input type='text' name='register_Q'><br>
-                <input type='submit' value='register'>
-            </form>
-        </body>
-    </html>`;
-    */
   var template = `<!DOCTYPE html>
   <html>
   
@@ -121,6 +107,7 @@ router.get("/", function (req, res) {
   </body>
   
   </html>`;
+  
   res.writeHead(200, { ContentType: "text/html" });
   res.write(template);
   res.end();
