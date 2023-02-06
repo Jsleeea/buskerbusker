@@ -31,6 +31,7 @@ CREATE TABLE `noticeData` (
     `title` varchar(20) NOT NULL,
     `text` text NOT NULL,
     `created` datetime NOT NULL,
+    `reported` boolean NOT NULL,
     PRIMARY KEY (`num`)
 );
 
@@ -38,9 +39,9 @@ CREATE TABLE `noticeData` (
 -- Dumping data for table `noticeData`
 --
 
-INSERT INTO `noticeData` VALUES (NULL,'HONG','HELLO','my name is hong', now());
-INSERT INTO `noticeData` VALUES (NULL,'DUCK','NODEJS','my name is duck', now());
-INSERT INTO `noticeData` VALUES (NULL,'HWA','HARD','my name is hwa', now());
+INSERT INTO `noticeData` VALUES (NULL,'HONG','HELLO','my name is hong', now(), false);
+INSERT INTO `noticeData` VALUES (NULL,'DUCK','NODEJS','my name is duck', now(), false);
+INSERT INTO `noticeData` VALUES (NULL,'HWA','HARD','my name is hwa', now(), false);
 
 --
 -- Table structure for table `commentData`
@@ -52,6 +53,7 @@ CREATE TABLE `commentData` (
     `noticeTitle` varchar(20) NOT NULL,
     `text` text NOT NULL,
     `created` datetime NOT NULL,
+    `reported` boolean NOT NULL,
     PRIMARY KEY (`num`)
 );
 
@@ -59,9 +61,9 @@ CREATE TABLE `commentData` (
 -- Dumping data for table `commentData`
 --
 
-INSERT INTO `commentData` VALUES (NULL,'HONG','HELLO','nice to meet you', now());
-INSERT INTO `commentData` VALUES (NULL,'DUCK','NODEJS','this is test', now());
-INSERT INTO `commentData` VALUES (NULL,'HWA','HARD','너무 어려웡', now());
+INSERT INTO `commentData` VALUES (NULL,'HONG','HELLO','nice to meet you', now(), false);
+INSERT INTO `commentData` VALUES (NULL,'DUCK','NODEJS','this is test', now(), false);
+INSERT INTO `commentData` VALUES (NULL,'HWA','HARD','너무 어려웡', now(), false);
 
 /* 참고용 주석
 --
