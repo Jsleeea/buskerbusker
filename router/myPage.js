@@ -1,11 +1,23 @@
 var express = require("express");
 var router = express.Router();
 var cookieParser = require('cookie-parser');
+var template = require("../lib/template.js");
+var mysql = require('mysql');
 
 router.use(function (req, res, next) {
   next();
 });
 router.use(cookieParser());
+
+var connection = mysql.createConnection({
+  host: "localhost",
+  user: "root",
+  password: "hong6376",
+  database: "buskerbuskerData",
+  insecureAuth: true,
+});
+
+connection.connect();
 
 router.get("/:userID", function (req, res){
   if(req.cookies.User == undefined){
@@ -15,28 +27,30 @@ router.get("/:userID", function (req, res){
     );
   }
   else{
-    var html = `
-    <!doctype html>
-    <html>
-      <head>
-        <title>${req.cookies.User}</title>
-        <meta charset="utf-8">
-      </head>
-    <body>
-      <h1><a href="/">${req.cookies.User}'s Page</a></h1>
-      <ol>
-        <li><a href="/notice">NOTICE</a></li>
-        <li><a href="/myPage">MyPage</a></li>
-        <li><a href="3.html">JavaScript</a></li>
-      </ol>
-      <h2>Hello ${req.cookies.User}</h2>
-      <p>
-      Nice to see you again!
-      </p>
-    </body>
-    </html>
-    `;
-    res.send(html);
+    var userId = req.cookies.User;
+    var query = `select * from noticeData where author = "${userId}";`;
+
+    connection.query(query, function(error, results, fields){
+      if(error){
+        console.log(error);
+      }
+      else{
+        var title = `${userId}'s Page`;
+        var list = template.list(results);
+        var html = template.HTML(
+          title,
+          list,
+          ``,
+          `
+          <a style="text-decoration: none; color: #fff; font-size: 14px;background-color: #FF7B54;margin-top: 20px; border-radius: 6px;" href="/create">질문 등록하기</a>
+          `,
+          `
+          <a style="text-decoration: none; color:#FFB26B;"> ${userId}'s Page </a>
+          `
+        );
+        res.send(html);
+      }
+    });
   }
 });
 

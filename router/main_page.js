@@ -1,5 +1,4 @@
 var express = require("express");
-var fs = require("fs");
 var template = require("../lib/template.js");
 var router = express.Router();
 var bodyParser = require("body-parser");
