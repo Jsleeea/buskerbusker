@@ -5,11 +5,10 @@ router.use(function (req, res, next) {
     next();
 });
 
-
 router.get("/", function (req, res){
-    var template = `<!DOCTYPE html>
+    var html = `
+    <!DOCTYPE html>
     <html>
-    
     <head>
         <title>MY_PAGE</title>
         <meta charset="utf-8">
@@ -89,11 +88,10 @@ router.get("/", function (req, res){
         </div>
     </body>
     
-    </html>`;
+    </html>
+    `;
 
-  res.writeHead(200, { ContentType: "text/html" });
-  res.write(template);
-  res.end();
+    res.send(html);
 });
 
 module.exports = router;
