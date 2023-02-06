@@ -13,6 +13,7 @@ var router_loginPage = require("./router/login");
 var router_registerPage = require("./router/register");
 var router_findPage = require("./router/find_page");
 var router_findProcess = require("./router/find_process");
+var router_reportProcess = require("./router/report_process");
 
 
 app.listen(3000, () => {
@@ -31,3 +32,4 @@ app.use("/login", router_loginPage);
 app.use("/register", router_registerPage);
 app.use("/find", router_findPage);
 app.use("/find_process", router_findProcess);
+app.use("/report_process", router_reportProcess);

@@ -62,7 +62,12 @@ router.get("/:pageID", function (req, res) {
                  */
                 `
                <form action="/delete_process" method="post">
-                 ${Delete}
+                ${Delete}
+               </form>
+
+               <form action="/report_process" method="post">
+                <input type="submit" value="report">
+                <input type="hidden" name="reportedTitle" value=${title}>
                </form><br><br>
 
                 <div>답변:</div>
