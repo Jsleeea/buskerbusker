@@ -2,10 +2,10 @@ const { response, request } = require("express");
 var express = require("express");
 var router = express.Router();
 var template = require("../lib/template.js");
-var fs = require("fs");
 var path = require("path");
 var mysql = require("mysql");
 const e = require("express");
+var cookieParser = require("cookie-parser");
 const { fileURLToPath } = require("url");
 
 router.use(function (req, res, next) {
@@ -21,6 +21,7 @@ var connection = mysql.createConnection({
 });
 
 connection.connect();
+router.use(cookieParser());
 
 router.get("/:pageID", function (req, res) {
   var filteredId = path.parse(req.params.pageID).base;
@@ -44,7 +45,7 @@ router.get("/:pageID", function (req, res) {
               var title = results[0].title;
               var description = results[0].text;
               var list = template.list(results_2);
-              var answer_list = template.answer_list(results_3);
+              var answer_list = template.answer_list(results_3, req.cookies.User);
               var Delete = ``;
              
               if(req.cookies.User == results[0].author || req.cookies.User == 'ADMIN'){
