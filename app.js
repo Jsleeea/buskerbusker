@@ -7,6 +7,7 @@ var router_myPage = require("./router/myPage");
 var router_createPage = require("./router/create_page");
 var router_createProcess = require("./router/create_process");
 var router_deleteProcess = require("./router/delete_process");
+var router_deleteAnswer = require("./router/delete_answer")
 var router_answerPage = require("./router/answer_page");
 var router_answerProcess = require("./router/answer_process");
 var router_loginPage = require("./router/login");
@@ -34,3 +35,4 @@ app.use("/find", router_findPage);
 app.use("/find_process", router_findProcess);
 app.use("/report_process", router_reportProcess);
 app.use("/report_answer", router_reportAnswer);
+app.use("/delete_answer", router_deleteAnswer);
