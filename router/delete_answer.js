@@ -18,16 +18,15 @@ var connection = mysql.createConnection({
 connection.connect();
 router.post("/", function (request, response) {
   var post = request.body;
-  console.log('진입');
-  var deleteNum = post.deleteAnswerNum;
-  console.log(deleteNum);
-  var query = `delete from commentdata where num = '${deleteNum}';`; // {deleteNum}을 토대로 commentData에서 게시글 정보 가져올것.
+  var deleteNum = post.deletedAnswer;
+  var query = `delete from commentdata where num = ${deleteNum};`; // {deleteNum}을 토대로 commentData에서 게시글 정보 가져올것.
 
   connection.query(query, function (error, results, fields) {
     // results : noticeData 정보
     if (error) {
       console.log(error);
     } else {
+        console.log('답변 삭제 성공');
       response.redirect('../');
     }
   });
