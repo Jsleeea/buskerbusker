@@ -27,6 +27,7 @@ router.post("/", function (req, res){
     if (error) {
         console.log(error);
     } else {
+        console.log('신고완료');
         res.send(`
           <script>window.location=\"../\"</script>
           <script>alert('정상적으로 신고처리 되었습니다.')</script>`

@@ -35,4 +35,4 @@ app.use("/find", router_findPage);
 app.use("/find_process", router_findProcess);
 app.use("/report_process", router_reportProcess);
 app.use("/report_answer", router_reportAnswer);
-app.use("/delete_answer", router_deleteAnswer);
+app.use("/deleteAnswerProcess", router_deleteAnswer);
