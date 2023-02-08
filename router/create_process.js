@@ -22,7 +22,7 @@ router.post("/", function (request, response) {
   var title = post.title; // Q1
   var description = post.description; //Question 1
 
-  var query = `INSERT INTO \`noticeData\` VALUES (NULL,'${request.cookies.User}','${title}','${description}', now());`;
+  var query = `INSERT INTO \`noticeData\` VALUES (NULL,'${request.cookies.User}','${title}','${description}', now(), false);`;
   connection.query(query, function (error, results, fields) {
     if (error) {
       console.log(error);
