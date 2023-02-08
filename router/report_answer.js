@@ -19,10 +19,9 @@ connection.connect();
 
 router.post("/", function (req, res){
   var post = req.body;
-  var reportedTitle = post.reportedTitle;
-  console.log(reportedTitle);
+  var reportedAnswer = post.reportedAnswer;
 
-  var query = `UPDATE noticeData SET reported = TRUE where title = '${reportedTitle}';`; // {reported_title}을 토대로 noticeData에서 사용자 정보를 가져올것.
+  var query = `UPDATE commentData SET reported = TRUE where num = '${reportedAnswer}';`; // {reported_title}을 토대로 noticeData에서 사용자 정보를 가져올것.
 
   connection.query(query, function (error, results, fields) { // results = {id}로 검색한 Userdata
     if (error) {

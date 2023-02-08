@@ -22,7 +22,7 @@ router.use(bodyParser.urlencoded({ extended: false }));
 router.use(cookieParser());
 
 router.get("/", function (request, response) {
-  var query = `select title from noticedata;`;
+  var query = `select * from noticedata;`;
 
   connection.query(query, function (error, results, fields) {
     if (error) {

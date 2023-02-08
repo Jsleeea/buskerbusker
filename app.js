@@ -14,7 +14,7 @@ var router_registerPage = require("./router/register");
 var router_findPage = require("./router/find_page");
 var router_findProcess = require("./router/find_process");
 var router_reportProcess = require("./router/report_process");
-
+var router_reportAnswer = require("./router/report_answer")
 
 app.listen(3000, () => {
   console.log("listen to 3000");
@@ -33,3 +33,4 @@ app.use("/register", router_registerPage);
 app.use("/find", router_findPage);
 app.use("/find_process", router_findProcess);
 app.use("/report_process", router_reportProcess);
+app.use("/report_answer", router_reportAnswer);

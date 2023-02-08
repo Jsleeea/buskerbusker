@@ -1,6 +1,4 @@
 var express = require("express");
-var fs = require("fs");
-var qs = require("querystring");
 var app = express();
 var router = express.Router();
 var mysql = require("mysql");
@@ -25,7 +23,7 @@ router.post("/", function (request, response) {
   var title = post.title;
   var comment = post.comment;
 
-  var query = `INSERT INTO \`commentData\` VALUES (NULL,'${request.cookies.User}','${title}','${comment}', now());`;
+  var query = `INSERT INTO \`commentData\` VALUES (NULL,'${request.cookies.User}','${title}','${comment}', now(), false);`;
   connection.query(query,function(error,results,fields){
     if(error){
       console.log(error);

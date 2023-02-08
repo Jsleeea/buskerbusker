@@ -58,8 +58,6 @@ router.get("/:pageID", function (req, res) {
               var html = template.HTML(
                 title,
                 list,
-                /*
-                 */
                 `
                <form action="/delete_process" method="post">
                 ${Delete}
@@ -74,7 +72,8 @@ router.get("/:pageID", function (req, res) {
                 ${answer_list}
                 <a href='/answer/${filteredId}'>답변하기</a>
                 `,
-                `<h2>${title}</h2>${description}<br><br>`
+                `<h2>${title}</h2>${description}<br><br>`,
+                ``
               );
               res.send(html);
             }
