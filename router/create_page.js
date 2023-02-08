@@ -22,33 +22,12 @@ router.use(cookieParser());
 
 router.get("/", function (req, res) {
   if (req.cookies.User == undefined) {
-    res.redirect("../");
-    console.log("먼저 로그인 하세요.");
+    res.send(`
+      <script>alert('로그인 이후 이용해주세요')</script>
+      <script>window.location=\"../\"</script>`
+    );
   } else {
     var title = "Welcome";
-    /*
-    var html = `
-      <!doctype html>
-      <html>
-        <head>
-          <title>BUSKERBUSKER - Welcome</title>
-          <meta charset="utf-8">
-        </head>
-      <body>
-        <h1><a href="/">BUSKER_BUSKER 질문 게시판</a></h1>
-        <form action='/create_process' method="post">
-        <p><input type="text" name="title" placeholder="title"></p>
-        <p>
-          <textarea name="description" placeholder="description"></textarea>
-        </p>
-        <p>
-          <input type="submit">
-        </p>
-      </form>
-      </body>
-      </html>
-      `;
-*/
     var html = `<!DOCTYPE html>
       <html>
       
