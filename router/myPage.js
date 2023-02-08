@@ -29,6 +29,10 @@ router.get("/:userID", function (req, res){
   else{
     var userId = req.cookies.User;
     var query = `select * from noticeData where author = "${userId}";`;
+    
+    if(userId == 'ADMIN'){
+      query = `select * from noticeData where reported = TRUE;`;
+    }
 
     connection.query(query, function(error, results, fields){
       if(error){

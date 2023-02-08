@@ -47,7 +47,7 @@ router.get("/:pageID", function (req, res) {
               var answer_list = template.answer_list(results_3);
               var Delete = ``;
              
-              if(req.cookies.User == results[0].author){
+              if(req.cookies.User == results[0].author || req.cookies.User == 'ADMIN'){
                 Delete = 
                 `
                 <input type="submit" value="delete">
